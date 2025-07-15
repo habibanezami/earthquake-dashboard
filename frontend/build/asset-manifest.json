@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/habibanezami/earthquake-dashboard.git/static/css/main.0039424b.css",
+    "main.js": "/habibanezami/earthquake-dashboard.git/static/js/main.39f4af36.js",
+    "static/js/453.dea01cf1.chunk.js": "/habibanezami/earthquake-dashboard.git/static/js/453.dea01cf1.chunk.js",
+    "index.html": "/habibanezami/earthquake-dashboard.git/index.html",
+    "main.0039424b.css.map": "/habibanezami/earthquake-dashboard.git/static/css/main.0039424b.css.map",
+    "main.39f4af36.js.map": "/habibanezami/earthquake-dashboard.git/static/js/main.39f4af36.js.map",
+    "453.dea01cf1.chunk.js.map": "/habibanezami/earthquake-dashboard.git/static/js/453.dea01cf1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0039424b.css",
+    "static/js/main.39f4af36.js"
+  ]
+}
