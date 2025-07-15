@@ -8,7 +8,7 @@ function Home() {
         Welcome to the Earthquake Dashboard
       </h1>
       <p style={{ fontSize: '1.2rem', marginBottom: '2rem', maxWidth: '600px', marginInline: 'auto' }}>
-        Explore seismic trends, make predictions, and stay informed with our interactive tools.
+        Explore seismic trends, make predictions.
       </p>
       <Link to="/predict">
         <button>Start Predicting</button>

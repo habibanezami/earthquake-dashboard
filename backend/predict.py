@@ -1,4 +1,4 @@
-# predict.py
+
 
 from tabpy.tabpy_tools.client import Client
 import joblib
@@ -7,7 +7,7 @@ import os
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
-# Paths to trained model files
+
 model_paths = {
     "Linear Regression": "linear_regression_model.pkl",
     "Decision Tree": "decision_tree_model.pkl",
@@ -16,18 +16,17 @@ model_paths = {
     "KNN": "knn_model.pkl"
 }
 
-# Load and preprocess dataset
 df = pd.read_csv("earthquake_dataset.csv")
 df = df[df["Year"] >= 1960]
 df = df[["Magnitude", "Depth_km", "Population_Density", "Urbanization_Rate", "Deaths"]].dropna()
 
-# Standardize features and calculate correlation weights
+
 X = df[["Magnitude", "Depth_km", "Population_Density", "Urbanization_Rate"]]
 scaler = StandardScaler().fit(X)
 joblib.dump(scaler, "scaler.pkl")
-correlations = df.corr(numeric_only=True)["Deaths"].drop("Deaths").abs().values  # shape (4,)
+correlations = df.corr(numeric_only=True)["Deaths"].drop("Deaths").abs().values  
 
-# Prediction function for TabPy
+
 def predict_deaths_with_model(model_names, mag_list, depth_list, pop_list, urban_list):
     predictions = []
 
@@ -39,21 +38,19 @@ def predict_deaths_with_model(model_names, mag_list, depth_list, pop_list, urban
             predictions.append(-1)
             continue
 
-        # Load model
+
         model = joblib.load(model_file)
 
-        # Prepare input and apply transformations
+
         features = np.array([[mag_list[i], depth_list[i], pop_list[i], urban_list[i]]])
         features_scaled = scaler.transform(features)
         features_weighted = features_scaled * correlations
 
-        # Make prediction
         pred = model.predict(features_weighted)[0]
         predictions.append(float(pred))
 
     return predictions
 
-# Deploy to TabPy
 client = Client("http://localhost:9004/")
 client.deploy(
     "predict_deaths_with_model",
@@ -62,4 +59,4 @@ client.deploy(
     override=True
 )
 
-print("✅ Prediction function deployed to TabPy.")
+print("Prediction function deployed to TabPy.")
